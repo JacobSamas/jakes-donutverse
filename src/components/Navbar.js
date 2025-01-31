@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { FaShoppingCart } from "react-icons/fa";
 
-const Navbar = () => {
+const Navbar = ({ cartCount }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -47,6 +47,11 @@ const Navbar = () => {
           <Link href="/cart" className="relative text-lg text-white hover:text-pink-400 transition flex items-center">
             Cart
             <FaShoppingCart className="ml-2 text-pink-400" />
+            {cartCount > 0 && (
+              <span className="absolute -top-2 -right-3 bg-pink-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                {cartCount}
+              </span>
+            )}
           </Link>
         </div>
 
@@ -94,7 +99,12 @@ const Navbar = () => {
             <Link href="/cart" className="text-xl text-white hover:text-pink-400 transition flex items-center" onClick={() => setIsOpen(false)}>
               Cart
               <FaShoppingCart className="ml-2 text-pink-400" />
-            </Link>
+            {cartCount > 0 && (
+              <span className="absolute -top-2 -right-3 bg-pink-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                {cartCount}
+              </span>
+            )}
+          </Link>
           </motion.div>
         )}
       </AnimatePresence>

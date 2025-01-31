@@ -20,7 +20,7 @@ const Donut = ({ color, stroke }) => (
   </svg>
 );
 
-const MenuGrid = () => {
+const MenuGrid = ({ addToCart }) => {
   const [filter, setFilter] = useState("All");
 
   // Filter Donuts Based on Selection
@@ -54,13 +54,19 @@ const MenuGrid = () => {
           filteredDonuts.map((donut) => (
             <motion.div
               key={donut.id}
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 200 }}
               className="bg-gray-800 p-6 rounded-xl shadow-lg flex flex-col items-center text-center"
             >
               <Donut color={donut.color} stroke={donut.stroke} />
               <h3 className="mt-4 text-xl font-semibold text-pink-400">{donut.name}</h3>
               <p className="text-sm text-gray-300 mt-2">{donut.flavor} Flavor</p>
+              <button
+                onClick={() => addToCart(donut)}
+                className="mt-4 px-4 py-2 bg-pink-500 text-white rounded-full hover:bg-pink-400 transition"
+              >
+                Add to Cart
+              </button>
             </motion.div>
           ))
         ) : (
